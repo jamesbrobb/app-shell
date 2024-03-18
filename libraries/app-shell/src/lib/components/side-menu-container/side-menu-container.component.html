@@ -1,0 +1,6 @@
+
+<ng-container appShellSideMenuLoader="{{menuComponentType}}"
+  [menuNodes]="menuService.nodes"
+  [currentNodes]="(menuService.currentNodes$ | async) || undefined"
+  (nodeSelected)="menuService.selectNode($event)">
+</ng-container>

@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use "@jamesbenrobb/styles/theme" as theme;
+
+
+@mixin setJBRAppShellVars($light-theme: null, $dark-theme: null, $typography: null, $side-menu-width: null) {
+
+  @if $light-theme == null or $dark-theme == null or $typography == null {
+    $default-themes: theme.get-default-themes();
+    @if $light-theme == null {
+      $light-theme: nth($default-themes, 1);
+    }
+    @if $dark-theme == null {
+      $dark-theme: nth($default-themes, 2);
+    }
+    @if $typography == null {
+      $typography: nth($default-themes, 3);
+    }
+  }
+
+  $palettes: theme.get-mode-palettes-for(primary, $light-theme, $dark-theme);
+  $light-palette: nth($palettes, 1);
+  $dark-palette: nth($palettes, 2);
+
+  $primary-palettes: theme.get-mode-palettes-for(primary, $light-theme, $dark-theme);
+
+  $light-icon: theme.get-color-from-palette(nth($primary-palettes, 1), default-contrast);
+  $dark-icon: theme.get-color-from-palette(nth($primary-palettes, 2), default-contrast);
+
+  $light-link-color: theme.get-color-from-palette(nth($primary-palettes, 1), default);
+  $dark-link-color: theme.get-color-from-palette(nth($primary-palettes, 2), default);
+
+  @include theme.set-themes($light-theme, $dark-theme, $typography, '[data-color-mode="dark"]');
+  @include theme.set-form-themes($light-theme, $dark-theme, '[data-color-mode="dark"]');
+
+  :root {
+
+    @if $side-menu-width != null {
+      --jbr-app-shell-side-menu-width: #{$side-menu-width};
+    }
+
+    --jbr-app-shell-link-color: #{$light-link-color};
+    --jbr-nav-tree-item-color-1: var(--jbr-app-shell-link-color);
+    --jbr-breadcrumbs-link-color: var(--jbr-app-shell-link-color);
+    --jbr-dark-mode-btn-icon-color: #{$light-icon};
+    --jbr-pre-background-color: rgba(0, 0, 0, 0.05);
+
+    [data-color-mode="dark"] {
+      --jbr-app-shell-link-color: #{$dark-link-color};
+      --jbr-nav-tree-item-color-1: var(--jbr-app-shell-link-color);
+      --jbr-breadcrumbs-link-color: var(--jbr-app-shell-link-color);
+      --jbr-dark-mode-btn-icon-color: #{$dark-icon};
+      --jbr-pre-background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
