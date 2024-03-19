@@ -1,5 +1,5 @@
 /*
- * Public API Surface of dynamic-route-app
+ * Public API Surface of jbr-app-shell
  */
 
 export {AppShellRouteManager} from "./lib/core";

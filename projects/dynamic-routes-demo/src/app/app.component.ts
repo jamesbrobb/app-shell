@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppShellLayoutComponent } from '@jamesbenrobb/app-shell';
-import {AppContentContainerComponent} from "@jamesbenrobb/dynamic-route-app";
+import {AppContentContainerComponent} from "@jamesbenrobb/dynamic-routes-ngx";
 
 
 @Component({

@@ -4,7 +4,7 @@ import {AppShellMenuConfigService, AppShellRouteManagerService} from "@jamesbenr
 import {menuConfigFactory} from "./routes-to-nav.convertor";
 
 
-export function getJBRAppShellDynamicRouteProviders(): EnvironmentProviders {
+export function getJBRAppShellDynamicRoutesNgxProviders(): EnvironmentProviders {
   return makeEnvironmentProviders([{
     provide: AppShellMenuConfigService,
     useFactory: () => menuConfigFactory(inject(RouteManager).routes)

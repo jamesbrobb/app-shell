@@ -3,4 +3,4 @@
  */
 
 export {getJBRAppShellAngularRouterProviders} from "./lib/angular-router/providers";
-export {getJBRAppShellDynamicRouteProviders} from "./lib/jbr-dynamic-routes-app/providers";
+export {getJBRAppShellDynamicRoutesNgxProviders} from "./lib/dynamic-routes-ngx/providers";
