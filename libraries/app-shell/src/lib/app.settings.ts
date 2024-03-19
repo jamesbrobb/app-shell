@@ -11,6 +11,7 @@ export type AppShellSettings = {
 }
 
 export const AppShellSettingsService = new InjectionToken<AppShellSettings>('AppSettings', {
+  providedIn: 'root',
   factory: () => ({
     displayColorModeBtn: true,
     displayBreadcrumbs: true,

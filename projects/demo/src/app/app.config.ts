@@ -6,7 +6,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     ...getJBRAppShellProviders({
       displayBreadcrumbs: true,
-      displayColorModeBtn: true
+      displayColorModeBtn: true,
+      displaySearchInput: true
     })
   ]
 };

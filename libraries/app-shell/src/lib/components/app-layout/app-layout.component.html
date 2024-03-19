@@ -10,9 +10,15 @@
 
     <ng-content select="[jbr-app-shell-toolbar-content]"></ng-content>
 
-    @if(appSettings.displayColorModeBtn) {
-      <jbr-ui-dark-mode-btn class="dark-mode-btn"></jbr-ui-dark-mode-btn>
-    }
+    <div class="right">
+      @if (appSettings.displaySearchInput) {
+        <jbr-app-shell-search-input-container class="search-container"></jbr-app-shell-search-input-container>
+      }
+
+      @if(appSettings.displayColorModeBtn) {
+        <jbr-ui-dark-mode-btn class="dark-mode-btn"></jbr-ui-dark-mode-btn>
+      }
+    </div>
 
   </mat-toolbar>
 

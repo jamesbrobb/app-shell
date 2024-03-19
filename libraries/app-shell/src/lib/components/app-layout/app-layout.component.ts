@@ -14,6 +14,7 @@ import {DarkModeBtnComponent} from "@jamesbenrobb/ui";
 import {AppShellSettingsService} from "../../app.settings";
 import {SideMenuContainerComponent} from "../../containers/side-menu-container/side-menu-container.component";
 import {BreadcrumbsContainerComponent} from "../../containers/breadcrumbs-container/breadcrumbs-container.component";
+import {SearchInputContainerComponent} from "../../containers/search-input-container/search-input-container.component";
 
 
 @Component({
@@ -26,7 +27,8 @@ import {BreadcrumbsContainerComponent} from "../../containers/breadcrumbs-contai
     MatToolbarModule,
     SideMenuContainerComponent,
     DarkModeBtnComponent,
-    BreadcrumbsContainerComponent
+    BreadcrumbsContainerComponent,
+    SearchInputContainerComponent
   ],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.scss',

@@ -29,6 +29,9 @@
   $light-link-color: theme.get-color-from-palette(nth($primary-palettes, 1), default);
   $dark-link-color: theme.get-color-from-palette(nth($primary-palettes, 2), default);
 
+  $light-contrast-color: theme.get-color-from-palette(nth($primary-palettes, 1), default-contrast);
+  $dark-contrast-color: theme.get-color-from-palette(nth($primary-palettes, 2), default-contrast);
+
   @include theme.set-themes($light-theme, $dark-theme, $typography, '[data-color-mode="dark"]');
   @include theme.set-form-themes($light-theme, $dark-theme, '[data-color-mode="dark"]');
 
@@ -43,6 +46,7 @@
     --jbr-breadcrumbs-link-color: var(--jbr-app-shell-link-color);
     --jbr-dark-mode-btn-icon-color: #{$light-icon};
     --jbr-pre-background-color: rgba(0, 0, 0, 0.05);
+    --jbr-ui-search-input-color: #{$light-contrast-color};
 
     [data-color-mode="dark"] {
       --jbr-app-shell-link-color: #{$dark-link-color};
@@ -50,6 +54,7 @@
       --jbr-breadcrumbs-link-color: var(--jbr-app-shell-link-color);
       --jbr-dark-mode-btn-icon-color: #{$dark-icon};
       --jbr-pre-background-color: rgba(255, 255, 255, 0.05);
+      --jbr-ui-search-input-color: #{$dark-contrast-color};
     }
   }
 }

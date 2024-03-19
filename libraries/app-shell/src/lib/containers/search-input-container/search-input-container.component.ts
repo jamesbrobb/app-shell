@@ -1,7 +1,9 @@
-import {ChangeDetectionStrategy, Component, DestroyRef, inject, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, effect, inject, viewChild} from '@angular/core';
 import {SearchInputComponent} from "@jamesbenrobb/ui";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {debounceTime, filter, tap} from "rxjs";
+import {AppShellSearchService} from "../../providers/search.providers";
+
 
 @Component({
   selector: 'jbr-app-shell-search-input-container',
@@ -15,17 +17,19 @@ import {debounceTime, filter, tap} from "rxjs";
 })
 export class SearchInputContainerComponent {
 
-  @ViewChild(SearchInputComponent, {static: true})
-  searchInput?: SearchInputComponent;
+  readonly searchInput = viewChild.required(SearchInputComponent);
 
+  readonly #searchService = inject(AppShellSearchService);
   readonly #destroyRef = inject(DestroyRef);
 
-  ngAfterViewInit() {
-    this.searchInput?.value.pipe(
-      filter(arg => arg.length === 0 || arg.length > 3),
-      debounceTime(200),
-      tap(arg => console.log(arg)),
-      takeUntilDestroyed(this.#destroyRef)
-    ).subscribe()
+  constructor() {
+    effect(() => {
+      this.searchInput().value.pipe(
+        filter(arg => arg.length === 0 || arg.length > 3),
+        debounceTime(200),
+        tap(arg => this.#searchService.search(arg)),
+        takeUntilDestroyed(this.#destroyRef)
+      ).subscribe();
+    });
   }
 }
