@@ -17,7 +17,7 @@ import {BreadcrumbsContainerComponent} from "../../containers/breadcrumbs-contai
 
 
 @Component({
-  selector: 'jbr-app-shell-layout-container',
+  selector: 'jbr-app-shell-layout',
   standalone: true,
   imports: [
     MatButtonModule,
@@ -28,11 +28,11 @@ import {BreadcrumbsContainerComponent} from "../../containers/breadcrumbs-contai
     DarkModeBtnComponent,
     BreadcrumbsContainerComponent
   ],
-  templateUrl: './app-layout-container.component.html',
-  styleUrl: './app-layout-container.component.scss',
+  templateUrl: './app-layout.component.html',
+  styleUrl: './app-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppLayoutContainerComponent {
+export class AppShellLayoutComponent {
 
   readonly sidenav = viewChild.required(MatSidenav);
 
