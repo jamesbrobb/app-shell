@@ -7,10 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-lib-prod": "ng build app-shell --configuration production",
-    "build-app-prod": "ng build demo --configuration production",
+    "build-lib-prod": "ng build app-shell --configuration production && ng build app-shell-routing-adaptors --configuration production",
+    "build-app-prod": "ng build demo --configuration production && ng build concrete-routes-demo --configuration production && ng build dynamic-routes-demo --configuration production",
     "build-prod": "npm run build-lib-prod && npm run build-app-prod",
-    "publish-lib": "npm run build-lib-prod && npm publish dist/libraries/@jamesbenrobb/app-shell"
+    "publish-lib": "npm run build-lib-prod && cd dist/libraries/@jamesbenrobb && npm publish ./app-shell && npm publish ./app-shell-routing-adaptors"
   },
   "private": true,
   "dependencies": {

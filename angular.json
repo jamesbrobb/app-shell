@@ -98,7 +98,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/demo",
+            "outputPath": {
+              "base": "dist/projects/demo",
+              "browser": ""
+            },
             "index": "projects/demo/src/index.html",
             "browser": "projects/demo/src/main.ts",
             "polyfills": [
@@ -145,6 +148,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "baseHref": "/demo/",
               "outputHashing": "all"
             },
             "development": {
@@ -208,7 +212,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/concrete-routes-demo",
+            "outputPath": {
+              "base": "dist/projects/concrete-routes-demo",
+              "browser": ""
+            },
             "index": "projects/concrete-routes-demo/src/index.html",
             "browser": "projects/concrete-routes-demo/src/main.ts",
             "polyfills": [
@@ -233,7 +240,13 @@
                 "dist/libraries/@jamesbenrobb/app-shell/styles"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "codemirror",
+              "deepmerge",
+              "moment",
+              "json-beautify"
+            ]
           },
           "configurations": {
             "production": {
@@ -249,6 +262,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "baseHref": "/concrete-routes-demo/",
               "outputHashing": "all"
             },
             "development": {
@@ -312,7 +326,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/dynamic-routes-demo",
+            "outputPath": {
+              "base": "dist/projects/dynamic-routes-demo",
+              "browser": ""
+            },
             "index": "projects/dynamic-routes-demo/src/index.html",
             "browser": "projects/dynamic-routes-demo/src/main.ts",
             "polyfills": [
@@ -337,7 +354,13 @@
                 "dist/libraries/@jamesbenrobb/app-shell/styles"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "codemirror",
+              "deepmerge",
+              "moment",
+              "json-beautify"
+            ]
           },
           "configurations": {
             "production": {
@@ -353,6 +376,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "baseHref": "/dynamic-routes-demo/",
               "outputHashing": "all"
             },
             "development": {
