@@ -11,9 +11,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MediaMatcher} from "@angular/cdk/layout";
 import {DarkModeBtnComponent} from "@jamesbenrobb/ui";
 
-import {SideMenuContainerComponent} from "../side-menu-container/side-menu-container.component";
-import {BreadcrumbsContainerComponent} from "../breadcrumbs-container/breadcrumbs-container.component";
 import {AppShellSettingsService} from "../../app.settings";
+import {SideMenuContainerComponent} from "../../containers/side-menu-container/side-menu-container.component";
+import {BreadcrumbsContainerComponent} from "../../containers/breadcrumbs-container/breadcrumbs-container.component";
 
 
 @Component({
