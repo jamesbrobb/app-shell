@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {AppLayoutContainerComponent} from "@jamesbenrobb/app-shell";
+import {AppShellLayoutComponent} from "@jamesbenrobb/app-shell";
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    AppLayoutContainerComponent
+    AppShellLayoutComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

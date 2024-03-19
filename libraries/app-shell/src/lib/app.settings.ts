@@ -1,5 +1,6 @@
 import {InjectionToken} from "@angular/core";
-import {DEFAULT_SIDE_MENU_COMPONENT} from "./components/side-menu-loader/side-menu-loader.directive";
+import {DEFAULT_SIDE_MENU_COMPONENT} from "./directives/side-menu-loader/side-menu-loader.directive";
+
 
 
 export type AppShellSettings = {

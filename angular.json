@@ -22,7 +22,7 @@
       },
       "root": "libraries/app-shell",
       "sourceRoot": "libraries/app-shell/src",
-      "prefix": "jbr-dra",
+      "prefix": "jbr-app-shell",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -43,6 +43,39 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "libraries/app-shell/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "app-shell-routing-adaptors": {
+      "projectType": "library",
+      "root": "libraries/app-shell-routing-adaptors",
+      "sourceRoot": "libraries/app-shell-routing-adaptors/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libraries/app-shell-routing-adaptors/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libraries/app-shell-routing-adaptors/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libraries/app-shell-routing-adaptors/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "libraries/app-shell-routing-adaptors/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -155,6 +188,214 @@
             ],
             "styles": [
               "projects/demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "concrete-routes-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/concrete-routes-demo",
+      "sourceRoot": "projects/concrete-routes-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/concrete-routes-demo",
+            "index": "projects/concrete-routes-demo/src/index.html",
+            "browser": "projects/concrete-routes-demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/concrete-routes-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/concrete-routes-demo/src/favicon.ico",
+              "projects/concrete-routes-demo/src/assets",
+              {
+                "glob": "**/*.*",
+                "input": "node_modules/@jamesbenrobb/ui/assets/",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/concrete-routes-demo/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "dist/libraries/@jamesbenrobb/app-shell/styles"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "concrete-routes-demo:build:production"
+            },
+            "development": {
+              "buildTarget": "concrete-routes-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "concrete-routes-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/concrete-routes-demo/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/concrete-routes-demo/src/favicon.ico",
+              "projects/concrete-routes-demo/src/assets"
+            ],
+            "styles": [
+              "projects/concrete-routes-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "dynamic-routes-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/dynamic-routes-demo",
+      "sourceRoot": "projects/dynamic-routes-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/dynamic-routes-demo",
+            "index": "projects/dynamic-routes-demo/src/index.html",
+            "browser": "projects/dynamic-routes-demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/dynamic-routes-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/dynamic-routes-demo/src/favicon.ico",
+              "projects/dynamic-routes-demo/src/assets",
+              {
+                "glob": "**/*.*",
+                "input": "node_modules/@jamesbenrobb/ui/assets/",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/dynamic-routes-demo/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "dist/libraries/@jamesbenrobb/app-shell/styles"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "dynamic-routes-demo:build:production"
+            },
+            "development": {
+              "buildTarget": "dynamic-routes-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "dynamic-routes-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/dynamic-routes-demo/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/dynamic-routes-demo/src/favicon.ico",
+              "projects/dynamic-routes-demo/src/assets"
+            ],
+            "styles": [
+              "projects/dynamic-routes-demo/src/styles.scss"
             ],
             "scripts": []
           }

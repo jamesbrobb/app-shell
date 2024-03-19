@@ -6,6 +6,9 @@
     "paths": {
       "@jamesbenrobb/app-shell": [
         "./dist/libraries/@jamesbenrobb/app-shell"
+      ],
+      "@jamesbenrobb/app-shell-routing-adaptors": [
+        "./dist/libraries/@jamesbenrobb/app-shell-routing-adaptors"
       ]
     },
     "forceConsistentCasingInFileNames": true,

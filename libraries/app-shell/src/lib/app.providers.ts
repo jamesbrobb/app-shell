@@ -2,10 +2,11 @@ import {EnvironmentProviders, importProvidersFrom, Provider} from "@angular/core
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {getComponentLoaderProviders, registerButtonIcons} from "@jamesbenrobb/ui";
-import {getSideMenuComponentProviders} from "./components/side-menu-loader/side-menu-loader.providers";
 import {getMenuProviders} from "./providers/menu.providers";
 import {AppShellSettings, AppShellSettingsService} from "./app.settings";
-import {DEFAULT_SIDE_MENU_COMPONENT} from "./components/side-menu-loader/side-menu-loader.directive";
+import {getSideMenuLoaderComponentProviders} from "./providers/side-menu-loader.providers";
+import {DEFAULT_SIDE_MENU_COMPONENT} from "./directives/side-menu-loader/side-menu-loader.directive";
+
 
 
 export function getJBRAppShellProviders(settings?: AppShellSettings): (Provider | EnvironmentProviders)[] {
@@ -16,7 +17,7 @@ export function getJBRAppShellProviders(settings?: AppShellSettings): (Provider 
     ),
     getMenuProviders(),
     getComponentLoaderProviders(),
-    getSideMenuComponentProviders(),
+    getSideMenuLoaderComponentProviders(),
     registerButtonIcons('assets/icons/'),
     {
       provide: AppShellSettingsService,

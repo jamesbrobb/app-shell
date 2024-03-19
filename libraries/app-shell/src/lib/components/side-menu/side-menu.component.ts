@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 
 import {NavItemNode, NavTreeComponent, openClose, rotate} from "@jamesbenrobb/ui";
+import {SideMenuComponentIO} from "../../directives/side-menu-loader/side-menu-loader.directive";
 
-import {SideMenuComponentIO} from "../side-menu-loader/side-menu-loader.directive";
 
 
 @Component({
