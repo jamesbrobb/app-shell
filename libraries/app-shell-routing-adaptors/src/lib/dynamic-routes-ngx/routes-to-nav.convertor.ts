@@ -2,7 +2,7 @@ import {NavConfig, NavItemNode} from "@jamesbenrobb/ui";
 import {RouteNode, isContentNode, isParentNode, isRedirectNode} from "@jamesbenrobb/dynamic-routes";
 
 
-export const menuConfigFactory = (routeConfig: RouteNode<any>[]): NavConfig => {
+export function convertRoutes(routeConfig: RouteNode<any>[]): NavConfig {
 
   return routeConfig
     .filter((routeNode) => !isRedirectNode(routeNode))

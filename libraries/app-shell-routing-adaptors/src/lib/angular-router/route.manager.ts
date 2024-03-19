@@ -3,7 +3,7 @@ import {NavigationEnd, Router} from "@angular/router";
 import {AppShellRouteManager} from "@jamesbenrobb/app-shell";
 
 
-export class StandardAngularRouteManager implements AppShellRouteManager {
+export class DefaultAngularRouteManager implements AppShellRouteManager {
 
   readonly #router: Router;
 

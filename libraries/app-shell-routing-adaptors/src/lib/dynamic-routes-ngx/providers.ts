@@ -1,13 +1,13 @@
 import {EnvironmentProviders, inject, makeEnvironmentProviders} from "@angular/core";
 import {RouteManager} from "@jamesbenrobb/dynamic-routes";
 import {AppShellMenuConfigService, AppShellRouteManagerService} from "@jamesbenrobb/app-shell";
-import {menuConfigFactory} from "./routes-to-nav.convertor";
+import {convertRoutes} from "./routes-to-nav.convertor";
 
 
 export function getJBRAppShellDynamicRoutesNgxProviders(): EnvironmentProviders {
   return makeEnvironmentProviders([{
     provide: AppShellMenuConfigService,
-    useFactory: () => menuConfigFactory(inject(RouteManager).routes)
+    useFactory: () => convertRoutes(inject(RouteManager).routes)
   }, {
     provide: AppShellRouteManagerService,
     useExisting: RouteManager

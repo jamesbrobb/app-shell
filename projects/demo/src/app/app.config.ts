@@ -4,7 +4,7 @@ import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    ...getJBRAppShellProviders({
+    getJBRAppShellProviders({
       displayBreadcrumbs: true,
       displayColorModeBtn: true,
       displaySearchInput: true
