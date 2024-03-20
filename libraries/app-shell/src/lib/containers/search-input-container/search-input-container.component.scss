@@ -2,8 +2,9 @@
   display: block;
 
   .search-input {
-    --jbr-ui-search-input-open-background-color: rgba(255,255,255, 0.9);
-    --jbr-ui-search-input-open-border-color: rgba(255,255,255, 0.9);
+    --jbr-ui-search-input-open-background-color: rgba(255,255,255, 0.7);
+    --jbr-ui-search-input-open-border-color: rgba(255,255,255, 0.8);
+    --jbr-ui-search-input-height: 36px;
 
     &.is-open {
       --jbr-ui-search-input-color: rgba(0, 0, 0, 0.8);

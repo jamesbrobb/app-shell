@@ -2,12 +2,11 @@ import {InjectionToken} from "@angular/core";
 import {DEFAULT_SIDE_MENU_COMPONENT} from "./directives/side-menu-loader/side-menu-loader.directive";
 
 
-
 export type AppShellSettings = {
-  displayColorModeBtn?: boolean,
-  displayBreadcrumbs?: boolean,
-  displaySearchInput?: boolean,
-  sideMenuComponentType?: string
+  displayColorModeBtn: boolean,
+  displayBreadcrumbs: boolean,
+  displaySearchInput: boolean,
+  sideMenuComponentType: string
 }
 
 export const AppShellSettingsService = new InjectionToken<AppShellSettings>('AppSettings', {
@@ -15,7 +14,7 @@ export const AppShellSettingsService = new InjectionToken<AppShellSettings>('App
   factory: () => ({
     displayColorModeBtn: true,
     displayBreadcrumbs: true,
-    displaySearchInput: true,
+    displaySearchInput: false,
     sideMenuComponentType: DEFAULT_SIDE_MENU_COMPONENT
   })
 });
