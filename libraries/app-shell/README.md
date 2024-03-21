@@ -1,7 +1,7 @@
 # App Shell
 <br/>
 
-## What.
+# What.
 
 A simple, configurable, app template using Angular Material components.
 
@@ -15,7 +15,7 @@ What you get:
 - header slot
 - content slot
 - styleable
-<br/>
+
 
 ### Demos
 
@@ -31,15 +31,15 @@ What you get:
 
 ![dynamic routes demo image](images/dynamic-demo.png)
 
-<br/><br/>
+<br/>
 
-## Why.
+# Why.
 
 Whilst creating Documentor (which required dynamic/configurable routes) it occurred to me that it may be useful to abstract out the underlying implementation/behaviour to use for other apps. So i did.
 <br/><br/>
 
 
-## How.
+# How.
 
 1. [Install](#install)
 2. [Include styles](#include-styles)
@@ -107,7 +107,7 @@ export class AppComponent {}
 <br/>
 
 
-## Configure for your own use.
+# Configure for your own use.
 
 1. [Provider options](#provider-options)
 2. [Header slot]()
