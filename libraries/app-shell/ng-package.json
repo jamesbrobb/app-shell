@@ -8,6 +8,8 @@
     ]
   },
   "assets": [
+    "_index.scss",
+    "images",
     {
       "input": "src/styles",
       "glob": "**/*.scss",
