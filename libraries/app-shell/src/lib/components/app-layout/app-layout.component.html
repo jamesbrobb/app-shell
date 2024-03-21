@@ -8,7 +8,7 @@
       </mat-icon>
     </button>
 
-    <ng-content select="[jbr-app-shell-toolbar-content]"></ng-content>
+    <ng-content select="[jbr-app-shell-header-content]"></ng-content>
 
     <div class="right">
       @if (appSettings.displaySearchInput) {
@@ -37,7 +37,7 @@
           <jbr-app-shell-breadcrumbs-container class="breadcrumbs-container"></jbr-app-shell-breadcrumbs-container>
         }
 
-        <ng-content select="[jbr-app-shell-app-content]"></ng-content>
+        <ng-content></ng-content>
 
       </section>
 

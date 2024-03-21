@@ -1,6 +1,7 @@
 import {InjectionToken} from "@angular/core";
 import {AppShellRouteManager, NoopAppShellRouteManager} from "../core";
 
+
 export const AppShellRouteManagerService = new InjectionToken<AppShellRouteManager>('AppShellRouteManagerService', {
   providedIn: 'root',
   factory: () => {

@@ -1,5 +1,5 @@
 import {ApplicationConfig} from '@angular/core';
-import {getJBRAppShellProviders, AppShellSearchService, NoOpSearchService} from "@jamesbenrobb/app-shell";
+import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
 
 
 export const appConfig: ApplicationConfig = {
