@@ -1,6 +1,6 @@
 {
   "name": "@jamesbenrobb/app-shell-routing-adaptors",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "author": "James Robb",
   "description": "Application shell routing adaptors",
   "repository": {
@@ -11,7 +11,7 @@
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "@jamesbenrobb/app-shell": "^0.0.8",
+    "@jamesbenrobb/app-shell": "^0.0.10",
     "@jamesbenrobb/dynamic-routes": "^0.0.4",
     "@jamesbenrobb/ui": "^1.0.40"
   },

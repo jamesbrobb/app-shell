@@ -3,31 +3,30 @@
 
 # What.
 
-A simple, configurable, app template using Angular Material components.
+A simple, configurable, app template built with Angular Material components, that's decoupled from both content and router implementation.
 
-Decoupled from content and router.
+You get:
 
-What you get:
-
-- colour mode button
-- breadcrumbs
-- search box
-- header slot
-- content slot
-- styleable
+- Colour modes
+- Breadcrumbs
+- Search input
+- Side menu nav tree
+- Header slot
+- Content slot
+- Configurable themes
 
 
 ### Demos
 
-[Empty shell.](https://app-shell.jamesrobb.work/demo/)
+Empty shell - [demo](https://app-shell.jamesrobb.work/demo/) / [source](https://github.com/jamesbrobb/app-shell/tree/main/projects/demo/src/app)
 
 ![empty shell demo image](images/demo.jpg)
 
-[Concrete angular routes.](https://app-shell.jamesrobb.work/concrete-routes-demo/)
+Concrete angular routes - [demo](https://app-shell.jamesrobb.work/concrete-routes-demo/) / [source](https://github.com/jamesbrobb/app-shell/tree/main/projects/concrete-routes-demo/src/app)
 
 ![concrete angular routes demo image](images/concrete-demo.png)
 
-[Dynamic routes](https://app-shell.jamesrobb.work/dynamic-routes-demo/)
+Dynamic routes - [demo](https://app-shell.jamesrobb.work/dynamic-routes-demo/) / [source](https://github.com/jamesbrobb/app-shell/tree/main/projects/dynamic-routes-demo/src/app) - implemented with [@jamesbenrobb/dynamic-routes-ngx](https://github.com/jamesbrobb/dynamic-routes)
 
 ![dynamic routes demo image](images/dynamic-demo.png)
 
@@ -35,7 +34,15 @@ What you get:
 
 # Why.
 
-Whilst creating Documentor (which required dynamic/configurable routes) it occurred to me that it may be useful to abstract out the underlying implementation/behaviour to use for other apps. So i did.
+Whilst creating [Documentor](https://github.com/jamesbrobb/documentor) it occurred to me that it would be useful to abstract out the underlying dynamic routing implementation/behaviour to use for other apps.
+
+Annoyingly, once this was complete, it then occurred to me that it would also be useful to abstract out the UI app shell to use with different routing solutions. This is the result.
+
+Examples of use:
+
+1. [Angular router inspector](https://angular-router-inspector.jamesrobb.work)
+2. [Portfolio V3](https://portfolio-v3.jamesrobb.work)
+3. [JBR Libs docs](https://jbr-docs.jamesrobb.work)
 <br/><br/>
 
 
@@ -106,22 +113,15 @@ export class AppComponent {}
 ```
 <br/>
 
-
 # Configure for your own use.
 
 1. [Provider options](#provider-options)
-2. [Header slot]()
-3. [Content slot]()
-4. [Add your own side menu]()
-5. [Configure menu]() // AppShellMenuConfigService - AppShellRouteManagerService
-6. [Search input]() // AppShellSearchService
-6. [Declare your own light and dark themes]()
-
-1. [Provider options](#provider-options)
-2. [Add your own content component](#add-your-own-content-component)
-3. [Add your own side menu](#add-your-own-side-menu)
-4. [Add your own header content](#add-your-own-header-content)
-5. [Declare your own light and dark themes](#declare-your-own-light-and-dark-themes)
+2. [Configure navigation](#configure-navigation)
+3. [Configure search input](#configure-search-input)
+4. [Add your own content](#add-your-own-content)
+5. [Add your own header content](#add-your-own-header-content)
+6. [Add your own side menu component](#add-your-own-side-menu-component)
+7. [Declare your own light and dark themes](#declare-your-own-light-and-dark-themes)
    <br/><br/>
 
 ### Provider options
@@ -135,14 +135,117 @@ export type AppShellOptions = {
 ```
 <br/>
 
-### Add your own side menu
+### Configure navigation
 
-By default a mildly modified version of `mat-tree` is used.
+The following tokens are exposed:
+
+ - [`AppShellMenuConfigService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/menu.providers.ts)
+ - [`AppShellRouteManagerService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/route.providers.ts)
+
+```ts
+import {Provider} from "@angular/core";
+import {NavConfig, NavItemNode} from "@jamesbenrobb/ui";
+import {AppShellMenuConfigService, AppShellRouteManagerService} from "@jamesbenrobb/app-shell";
+import {Router} from "@angular/router";
+
+const navMenuProvider: Provider = {
+  provide: AppShellMenuConfigService,
+  useFactory: () => convertRoutes(inject(Router).config)
+}
+
+const routeManagerProvider: Provider = {
+  provide: AppShellRouteManagerService,
+  useFactory: () => new DefaultAngularRouteManager(inject(Router))
+}
+
+
+function convertRoutes(): NavConfig {
+    const items: NavConfig = // logic that converts angular routes into an array of NavItemNode 
+    return items;
+}
+
+
+class DefaultAngularRouteManager implements AppShellRouteManager {
+
+  readonly #router: Router;
+
+  readonly urlChange$: Observable<string>
+
+  constructor(router: Router) {
+    this.#router = router;
+
+    this.urlChange$ = this.#router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event: NavigationEnd) => {
+        return (event as NavigationEnd).url;
+      })
+    );
+  }
+
+  navigateByUrl(path: string): void {
+    this.#router.navigateByUrl(path);
+  }
+}
+```
+
+Or use the [`getJBRAppShellAngularRouterProviders`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell-routing-adaptors/src/lib/angular-router/providers.ts) helper provider in [`@jamesbenrobb/app-shell-routing-adaptors`](https://github.com/jamesbrobb/app-shell/tree/main/libraries/app-shell-routing-adaptors), which does exactly the same as above.
+
+```ts
+import {ApplicationConfig} from '@angular/core';
+import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
+import {getJBRAppShellAngularRouterProviders} from "@jamesbenrobb/app-shell-routing-adaptors"
+import {routes} from "./app.routes";
+
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    getJBRAppShellProviders(),
+    getJBRAppShellAngularRouterProviders(routes)
+  ]
+};
+```
+<br/>
+
+### Configure search input
+
+The following token is exposed:
+
+- [`AppShellSearchService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/search.providers.ts)
+
+By providing this token the search input is automatically displayed in the header.
+
+```ts
+import {Observable, Subject} from "rxjs";
+import {SearchService} from '@jamesbenrobb/app-shell';
+
+
+const provider: Provider = {
+  provide: AppShellSearchService,
+  useClass: MySearchService
+}
+
+class MySearchService implements SearchService<string> {
+
+  readonly #results = new Subject<string[]>();
+  readonly results$: Observable<string[]> = this.#results.asObservable();
+
+  search(query: string): void {
+    const result: string[] = // search something
+    this.#results.next(result);
+  }
+}
+```
+<br/>
+
+### Add your own side menu component
+
+By default a slightly modified version of `mat-tree` is used.
 If you wish to supply your own menu first create a menu component that implements [`SideMenuComponentIO`](https://github.com/jamesbrobb/dynamic-routes-app/blob/main/libraries/dynamic-routes-ngx/src/lib/components/side-menu-loader/side-menu-loader.directive.ts#L8)
 
 ```ts
 import {Component, Input, Output} from "@angular/core";
-import {SideMenuComponentIO, MenuItemNode} from "@jamesbenrobb/dynamic-routes-app";
+import {SideMenuComponentIO} from "@jamesbenrobb/app-shell";
+import {NavItemNode} from "@jamesbenrobb/ui";
 
 
 @Component({
@@ -152,10 +255,10 @@ import {SideMenuComponentIO, MenuItemNode} from "@jamesbenrobb/dynamic-routes-ap
   standalone: true
 })
 export class MySideMenuComponent implements SideMenuComponentIO {
-  @Input() menuNodes?: MenuItemNode[];
-  @Input() currentNodes?: MenuItemNode[];
+  @Input() menuNodes?: NavItemNode[];
+  @Input() currentNodes?: NavItemNode[];
 
-  @Output() nodeSelected = new EventEmitter<MenuItemNode>();
+  @Output() nodeSelected = new EventEmitter<NavItemNode>();
 }
 ```
 
@@ -177,50 +280,48 @@ const provider: Provider = {
   multi: true
 }
 ```
-Supply the registered name of you side menu component to `getJBRDRAAppProviders`
+Supply the registered name of you side menu component to `getJBRAppShellProviders`
 
 ```ts
-import {ApplicationConfig} from '@angular/core';
-import {getJBRDRAAppProviders} from "@jamesbenrobb/dynamic-routes-ngx";
-
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    ...getJBRDRAAppProviders(
-      'assets/route-config.json',
-      {
-        appName: 'My app name',
-        sideMenuComponentType: 'my-side-menu'
-      }
-    )
-  ]
-};
 import {ApplicationConfig} from '@angular/core';
 import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    getJBRAppShellProviders()
+    getJBRAppShellProviders({
+      sideMenuComponentType: 'my-side-menu'
+    })
   ]
 };
 ```
 <br/>
 
-### Add your own header content
+### Add your own content
 
-The header has a content slot that can be used to project bespoke content.
+The app layout component has a default unnamed content slot.
 
 ```html
 <jbr-app-shell-layout>
-  <div jbr-dra-toolbar-content>I'm the header text</div>
+  <div>I'm the content</div>
+</jbr-app-shell-layout>
+```
+<br/>
+
+### Add your own header content
+
+The app layout component header has a named content slot that can be used to project bespoke content.
+
+```html
+<jbr-app-shell-layout>
+  <div jbr-dra-header-content>I'm the header text</div>
 </jbr-app-shell-layout>
 ```
 <br/>
 
 ### Declare your own light and dark themes
 
-Approximately 90% of the app uses Angular Material components and the other 10% also support being themed.
+Approximately 90% of the app uses Angular Material components and the other 10% support being themed.
 
 To supply your own themes the `setJBRAppShellVars` mixin has the following optional arguments:
 
