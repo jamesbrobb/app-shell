@@ -1,7 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
 import {getJBRAppShellDynamicRoutesNgxProviders} from "@jamesbenrobb/app-shell-routing-adaptors";
-import {getAppProviders} from "@jamesbenrobb/dynamic-routes-ngx";
+import {getJBRDRAppProviders} from "@jamesbenrobb/dynamic-routes-ngx";
 
 
 export const appConfig: ApplicationConfig = {
@@ -11,9 +11,10 @@ export const appConfig: ApplicationConfig = {
       displayColorModeBtn: true
     }),
     getJBRAppShellDynamicRoutesNgxProviders(),
-    getAppProviders(
-      'assets/route-config.json',
-      'Demo App'
+    getJBRDRAppProviders(
+      'assets/route-config.json', {
+        appName: 'Demo App'
+      }
     )
   ]
 };
