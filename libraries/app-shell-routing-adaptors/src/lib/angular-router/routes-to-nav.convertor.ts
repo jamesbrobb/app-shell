@@ -13,7 +13,7 @@ export function convertRoutes(routes: Routes, parentPath: string = ''): NavItemN
       const node: NavItemNode = {
         path,
         label: (route.path || '').replaceAll('-', ' '),
-        hasContent: !!route.data,
+        hasContent: true,
         active: 0
       }
 
