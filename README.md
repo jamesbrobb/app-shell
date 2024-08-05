@@ -2,7 +2,7 @@
 
 A simple, configurable, app template built with Angular Material components, that's decoupled from both content and router implementation.
 
-![empty shell demo image](libraries/app-shell/images/demo.jpg)
+![empty shell demo image](/images/demo.jpg)
 
 Consists of 2 libraries:
 

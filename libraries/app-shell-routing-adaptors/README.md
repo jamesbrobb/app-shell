@@ -1,10 +1,10 @@
 # App Shell Routing Adaptors
 
-# What.
+## What.
 
 Routing adaptors for [`@jamesbenrobb/app-shell`](https://github.com/jamesbrobb/app-shell/tree/main/libraries/app-shell)
 
-# How.
+## How.
 
 ### Standard Angular routes
 

@@ -1,6 +1,5 @@
 import {EnvironmentProviders, inject, InjectionToken, makeEnvironmentProviders} from "@angular/core";
 
-import {NoopAppShellRouteManager} from "../core";
 import {AppShellRouteManagerService} from "./route.providers";
 import {NavConfig, NavigationService} from "@jamesbenrobb/ui";
 import {MenuService} from "../core/menu/menu.service";

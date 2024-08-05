@@ -1,7 +1,6 @@
 # App Shell
-<br/>
 
-# What.
+## What.
 
 A simple, configurable, app template built with Angular Material components, that's decoupled from both content and router implementation.
 
@@ -20,19 +19,19 @@ You get:
 
 Empty shell - [demo](https://app-shell.jamesrobb.work/demo/) / [source](https://github.com/jamesbrobb/app-shell/tree/main/projects/demo/src/app)
 
-![empty shell demo image](images/demo.jpg)
+![empty shell demo image](/images/demo.jpg)
 
 Concrete angular routes - [demo](https://app-shell.jamesrobb.work/concrete-routes-demo/) / [source](https://github.com/jamesbrobb/app-shell/tree/main/projects/concrete-routes-demo/src/app)
 
-![concrete angular routes demo image](images/concrete-demo.png)
+![concrete angular routes demo image](/images/concrete-demo.png)
 
 Dynamic routes - [demo](https://app-shell.jamesrobb.work/dynamic-routes-demo/) / [source](https://github.com/jamesbrobb/app-shell/tree/main/projects/dynamic-routes-demo/src/app) - implemented with [@jamesbenrobb/dynamic-routes-ngx](https://github.com/jamesbrobb/dynamic-routes)
 
-![dynamic routes demo image](images/dynamic-demo.png)
+![dynamic routes demo image](/images/dynamic-demo.png)
 
 <br/>
 
-# Why.
+## Why.
 
 Whilst creating [Documentor](https://github.com/jamesbrobb/documentor) it occurred to me that it would be useful to abstract out the underlying dynamic routing implementation/behaviour to use for other apps.
 
@@ -46,7 +45,7 @@ Examples of use:
 <br/><br/>
 
 
-# How.
+## How.
 
 1. [Install](#install)
 2. [Include styles](#include-styles)
