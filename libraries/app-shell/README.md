@@ -1,8 +1,8 @@
 # App Shell
 
-## What.
+A simple, configurable app template built with Angular Material components, that's decoupled from both content and router implementation.
 
-A simple, configurable, app template built with Angular Material components, that's decoupled from both content and router implementation.
+---
 
 You get:
 
@@ -14,6 +14,7 @@ You get:
 - Content slot
 - Configurable themes
 
+---
 
 ### Demos
 
@@ -31,49 +32,47 @@ Dynamic routes - [demo](https://app-shell.jamesrobb.work/dynamic-routes-demo/) /
 
 <br/>
 
-## Why.
+---
 
-Whilst creating [Documentor](https://github.com/jamesbrobb/documentor) it occurred to me that it would be useful to abstract out the underlying dynamic routing implementation/behaviour to use for other apps.
-
-Annoyingly, once this was complete, it then occurred to me that it would also be useful to abstract out the UI app shell to use with different routing solutions. This is the result.
-
-Examples of use:
+### Examples of use
 
 1. [Angular router inspector](https://angular-router-inspector.jamesrobb.work)
-2. [Portfolio V3](https://portfolio-v3.jamesrobb.work)
-3. [JBR Libs docs](https://jbr-docs.jamesrobb.work)
-<br/><br/>
+2. [JBR Libs docs](https://jbr-docs.jamesrobb.work)
+3. [Portfolio V3](https://portfolio-v3.jamesrobb.work)
 
+---
 
-## How.
+### How to use
 
-1. [Install](#install)
-2. [Include styles](#include-styles)
-3. [Add providers](#add-providers)
-4. [Add the layout component](#add-the-layout-component)
-5. [Configure for your own use](#configure-for-your-own-use)
-   <br/><br/>
+1. [Getting started](#1)
+2. [Provider options](#2)
+3. [Configure navigation](#3)
+4. [Configure search input](#4)
+5. [Add your own content](#5)
+6. [Add your own side menu component](#6)
+7. [Declare your own light and dark themes](#7)
 
+---
 
-### Install
+# 1.
+
+**Getting started**
+
+Install
 
 ```bash
 npm i @jamesbenrobb/app-shell@latest
 ```
-<br/>
 
-
-### Include styles
+Include styles
 
 ```scss
 @use "@jamesbenrobb/app-shell" as app-shell;
 
 @include app-shell.setJBRAppShellVars();
 ```
-<br/>
 
-
-### Add providers
+Add providers
 
 ```ts
 import {ApplicationConfig} from '@angular/core';
@@ -82,14 +81,13 @@ import {getJBRAppShellProviders} from "@jamesbenrobb/app-shell";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    ...
     getJBRAppShellProviders()
   ]
 };
 ```
-<br/>
 
-
-### Add the layout component
+Add the layout component
 
 ```ts
 import { Component } from '@angular/core';
@@ -110,20 +108,10 @@ import {AppShellLayoutComponent} from "@jamesbenrobb/app-shell";
 })
 export class AppComponent {}
 ```
-<br/>
 
-# Configure for your own use.
+# 2.
 
-1. [Provider options](#provider-options)
-2. [Configure navigation](#configure-navigation)
-3. [Configure search input](#configure-search-input)
-4. [Add your own content](#add-your-own-content)
-5. [Add your own header content](#add-your-own-header-content)
-6. [Add your own side menu component](#add-your-own-side-menu-component)
-7. [Declare your own light and dark themes](#declare-your-own-light-and-dark-themes)
-   <br/><br/>
-
-### Provider options
+**Provider options**
 
 ```ts
 export type AppShellOptions = {
@@ -132,14 +120,15 @@ export type AppShellOptions = {
   sideMenuComponentType?: string
 }
 ```
-<br/>
 
-### Configure navigation
+# 3.
+
+**Configure navigation**
 
 The following tokens are exposed:
 
- - [`AppShellMenuConfigService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/menu.providers.ts)
- - [`AppShellRouteManagerService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/route.providers.ts)
+- [`AppShellMenuConfigService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/menu.providers.ts)
+- [`AppShellRouteManagerService`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/providers/route.providers.ts)
 
 ```ts
 import {Provider} from "@angular/core";
@@ -203,9 +192,10 @@ export const appConfig: ApplicationConfig = {
   ]
 };
 ```
-<br/>
 
-### Configure search input
+# 4.
+
+**Configure search input**
 
 The following token is exposed:
 
@@ -234,12 +224,33 @@ class MySearchService implements SearchService<string> {
   }
 }
 ```
-<br/>
 
-### Add your own side menu component
+# 5.
+
+**Add your own content**
+
+The app layout component has a default unnamed content slot.
+
+```html
+<jbr-app-shell-layout>
+  <div>I'm the content</div>
+</jbr-app-shell-layout>
+```
+
+The app layout component header has a named content slot that can be used to project bespoke content.
+
+```html
+<jbr-app-shell-layout>
+  <div jbr-dra-header-content>I'm the header text</div>
+</jbr-app-shell-layout>
+```
+
+# 6.
+
+**Add your own side menu component**
 
 By default a slightly modified version of `mat-tree` is used.
-If you wish to supply your own menu first create a menu component that implements [`SideMenuComponentIO`](https://github.com/jamesbrobb/dynamic-routes-app/blob/main/libraries/dynamic-routes-ngx/src/lib/components/side-menu-loader/side-menu-loader.directive.ts#L8)
+If you wish to supply your own menu first create a menu component that implements [`SideMenuComponentIO`](https://github.com/jamesbrobb/app-shell/blob/main/libraries/app-shell/src/lib/directives/side-menu-loader/side-menu-loader.directive.ts#L8)
 
 ```ts
 import {Component, Input, Output} from "@angular/core";
@@ -294,31 +305,10 @@ export const appConfig: ApplicationConfig = {
   ]
 };
 ```
-<br/>
 
-### Add your own content
+# 7.
 
-The app layout component has a default unnamed content slot.
-
-```html
-<jbr-app-shell-layout>
-  <div>I'm the content</div>
-</jbr-app-shell-layout>
-```
-<br/>
-
-### Add your own header content
-
-The app layout component header has a named content slot that can be used to project bespoke content.
-
-```html
-<jbr-app-shell-layout>
-  <div jbr-dra-header-content>I'm the header text</div>
-</jbr-app-shell-layout>
-```
-<br/>
-
-### Declare your own light and dark themes
+**Declare your own light and dark themes**
 
 Approximately 90% of the app uses Angular Material components and the other 10% support being themed.
 
